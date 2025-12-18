@@ -1,0 +1,83 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ pokemon.name|title }} - Détails</title>
+    <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'details/style.css' %}">
+</head>
+
+<body>
+
+    <header>
+        <div class="header-content">
+            <a href="{% url 'index' %}" class="back-btn">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M19 12H5" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                    <path d="M12 19L5 12L12 5" stroke="white" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round" />
+                </svg>
+                Retour
+            </a>
+
+            <div class="camera-lens"></div>
+            <h1>{{ pokemon.name }}</h1>
+        </div>
+    </header>
+
+    <div class="detail-container">
+
+        <div class="detail-card visual-card">
+            <div class="pokemon-id-large">#{{ pokemon.id }}</div>
+
+            <img src="{{ pokemon.image }}" alt="{{ pokemon.name }}" class="detail-image">
+
+            <div class="types-container">
+                {% for type in pokemon.type_names %}
+                <span class="type-badge type-{{ type }}">{{ type }}</span>
+                {% endfor %}
+            </div>
+
+            <div class="measurements">
+                <div class="measure-box">
+                    <span class="measure-label">Poids</span>
+                    <span class="measure-value">{{ pokemon.weight }} hg</span>
+                </div>
+                <div class="measure-box">
+                    <span class="measure-label">Taille</span>
+                    <span class="measure-value">{{ pokemon.height }} dm</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="detail-card stats-card">
+
+            <h2>Statistiques de Base</h2>
+            <div class="stats-list">
+                {% for stat in pokemon.stats %}
+                <div class="stat-row">
+                    <div class="stat-name">{{ stat.stat.name }}</div>
+                    <div class="stat-bar-container">
+                        <div class="stat-bar-fill" style="width: {{ stat.base_stat }}px;"></div>
+                    </div>
+                    <div class="stat-value">{{ stat.base_stat }}</div>
+                </div>
+                {% endfor %}
+            </div>
+
+            <h3>Talents (Abilities)</h3>
+            <div class="abilities-list">
+                {% for ability in pokemon.abilities %}
+                <span class="ability-pill">{{ ability.ability.name }}</span>
+                {% endfor %}
+            </div>
+        </div>
+
+    </div>
+
+</body>
+
+</html>

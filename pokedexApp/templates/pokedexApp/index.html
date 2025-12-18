@@ -1,0 +1,40 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pokédex Django</title>
+    <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;700&display=swap" rel="stylesheet">
+    <link href="{% static 'index/style.css' %}" rel="stylesheet">
+
+</head>
+
+<body>
+
+    <header>
+        <div class="header-content">
+            <div class="camera-lens"></div>
+            <h1>Pokédex</h1>
+        </div>
+    </header>
+
+    <div class="pokedex-container">
+        {% for pokemon in pokemon_list %}
+        <div class="pokemon-card">
+            <div class="pokemon-id">#{{ pokemon.id }}</div>
+
+            <a href="{% url 'details' pokemon.name %}">
+                <img src="{{ pokemon.image }}" alt="{{ pokemon.name }}" class="pokemon-image">
+            </a>
+
+            <h3 class="pokemon-name">{{ pokemon.name }}</h3>
+            <span class="type-badge"></span>
+        </div>
+        {% endfor %}
+    </div>
+
+</body>
+
+</html>
