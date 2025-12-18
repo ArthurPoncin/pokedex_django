@@ -1,0 +1,13 @@
+# Python
+__pycache__/
+*.pyc
+
+# Base de données
+db.sqlite3
+
+venv/
+.venv/
+env/
+
+# Fichiers système
+.DS_Store
