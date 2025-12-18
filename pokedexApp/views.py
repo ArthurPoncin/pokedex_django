@@ -10,7 +10,7 @@ def hello(request):
     return HttpResponse(text)
 
 def index(request):
-    url = 'https://pokeapi.co/api/v2/pokemon?limit=151'
+    url = 'https://pokeapi.co/api/v2/pokemon?limit=251'
     response = requests.get(url)
     data = response.json()    
     pokemons = data['results']
