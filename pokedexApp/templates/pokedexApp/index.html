@@ -23,10 +23,10 @@
     <div class="pokedex-container">
         {% for pokemon in pokemon_list %}
         <div class="pokemon-card">
-            <div class="pokemon-id">#{{ pokemon.id }}</div>
+            <div class="pokemon-id">#{{ pokemon.pokedex_id }}</div>
 
             <a href="{% url 'details' pokemon.name %}">
-                <img src="{{ pokemon.image }}" alt="{{ pokemon.name }}" class="pokemon-image">
+                <img src="{{ pokemon.image_url }}" alt="{{ pokemon.name }}" class="pokemon-image">
             </a>
 
             <h3 class="pokemon-name">{{ pokemon.name }}</h3>
